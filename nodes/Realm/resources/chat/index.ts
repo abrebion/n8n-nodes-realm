@@ -34,7 +34,7 @@ export const chatDescription: INodeProperties[] = [
 				name: 'Get',
 				value: 'get',
 				action: 'Get a chat',
-				description: 'Get a single chat conversations',
+				description: 'Get a single chat conversation',
 				routing: {
 					request: {
 						method: 'GET',

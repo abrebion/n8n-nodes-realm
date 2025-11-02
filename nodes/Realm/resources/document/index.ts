@@ -2,6 +2,7 @@ import type { INodeProperties } from 'n8n-workflow';
 import { documentGetManyDescription } from './getAll';
 import { documentGetDescription } from './get';
 import { documentDeleteDescription } from './delete';
+import { documentUpsertDescription } from './upsert';
 
 const showOnlyFordocuments = {
 	resource: ['document'],
@@ -18,34 +19,14 @@ export const documentDescription: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Get Many',
-				value: 'getAll',
-				action: 'Get documents',
-				description: 'Get documents for a connector',
+				name: 'Create or Update',
+				value: 'createOrUpdate',
+				action: 'Create or update documents',
+				description: 'Create or update documents for a connector',
 				routing: {
 					request: {
-						method: 'GET',
-						url: '=/documents/{{$parameter.connectorId}}/',
-						arrayFormat: 'repeat',
-						qs: {
-							fields: '={{$parameter.fieldsToInclude}}',
-						},
-					},
-				},
-			},
-			{
-				name: 'Get',
-				value: 'get',
-				action: 'Get a document',
-				description: 'Get a single document',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/documents/{{$parameter.connectorId}}/{{$parameter.documentId}}',
-						arrayFormat: 'repeat',
-						qs: {
-							fields: '={{$parameter.fieldsToInclude}}',
-						},
+						method: 'POST',
+						url: '=/documents/{{$parameter.connectorId}}',
 					},
 				},
 			},
@@ -76,10 +57,43 @@ export const documentDescription: INodeProperties[] = [
 					},
 				},
 			},
+			{
+				name: 'Get',
+				value: 'get',
+				action: 'Get a document',
+				description: 'Get a single document',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/documents/{{$parameter.connectorId}}/{{$parameter.documentId}}',
+						arrayFormat: 'repeat',
+						qs: {
+							fields: '={{$parameter.fieldsToInclude}}',
+						},
+					},
+				},
+			},
+			{
+				name: 'Get Many',
+				value: 'getAll',
+				action: 'Get documents',
+				description: 'Get documents for a connector',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/documents/{{$parameter.connectorId}}/',
+						arrayFormat: 'repeat',
+						qs: {
+							fields: '={{$parameter.fieldsToInclude}}',
+						},
+					},
+				},
+			},
 		],
 		default: 'getAll',
 	},
 	...documentGetManyDescription,
 	...documentGetDescription,
 	...documentDeleteDescription,
+	...documentUpsertDescription,
 ];

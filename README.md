@@ -1,8 +1,10 @@
 # n8n-nodes-realm
 
-This is an n8n community node. It lets you use _app/service name_ in your n8n workflows.
+This is an n8n community node. It lets you consume Realm API in your n8n workflows.
 
-_App/service name_ is _one or two sentences describing the service this node integrates with_.
+Realm is an AI-powered enterprise search engine that unifies your knowledge bases (Google Drive, Slack, Jira, Confluence, Salesforce, Gong, etc.) and makes them accessible to custom AI assistants.
+
+With the Realm API, you can programmatically add, edit, and delete documents for custom connectors (non-native knowledge data sources) and interact with Realm assistants.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
@@ -10,9 +12,7 @@ _App/service name_ is _one or two sentences describing the service this node int
 [Operations](#operations)
 [Credentials](#credentials)
 [Compatibility](#compatibility)
-[Usage](#usage)
 [Resources](#resources)
-[Version history](#version-history)
 
 ## Installation
 
@@ -20,27 +20,33 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
-_List the operations supported by your node._
+This node supports the following resources/operations:
+
+* Create or continue a chat conversation
+* Get a single chat conversation
+* Get many chat conversations
+* Delete a chat conversation
+* Get all asssistants
+* Get all connectors
+* Create or update documents in a connector
+* Get all documents from a connector
+* Get a specific document from a connector
+* Delete a specific document from a connector
+* Delete documents from a connector older than a specified timestamp
 
 ## Credentials
 
-_If users need to authenticate with the app/service, provide details here. You should include prerequisites (such as signing up with the service), available authentication methods, and how to set them up._
-
-## Compatibility
-
-_State the minimum n8n version, as well as which versions you test against. You can also include any known version incompatibility issues._
+* From the Realm app, create an API key and give it access to assistants.
+* In n8n, create a new Realm credential. Enter your API base url (e.g. https://your-account.withrealm.com/api/external/alpha) and the API key you've just created.
 
 ## Usage
 
-_This is an optional section. Use it to help users with any difficult or confusing aspects of the node._
+In your Workflow, find the Realm node and use as you need. I accept comments and suggestions in Issues repository on GitHub.
 
-_By the time users are looking for community nodes, they probably already know n8n basics. But if you expect new users, you can link to the [Try it out](https://docs.n8n.io/try-it-out/) documentation to help them get started._
+## Compatibility
+
+Tested against n8n version 1.117.3+
 
 ## Resources
 
 * [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-* _Link to app/service documentation._
-
-## Version history
-
-_This is another optional section. If your node has multiple versions, include a short description of available versions and what changed, as well as any compatibility impact._

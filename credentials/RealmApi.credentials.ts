@@ -23,7 +23,7 @@ export class RealmApi implements ICredentialType {
 			required: true,
 			default: '',
 			description:
-				'Your custom base URL for the Realm API (e.g. https://myaccount.withrealm.com/api/external/alpha)',
+				'Your custom base URL for the Realm API (e.g. https://your-account.withrealm.com/api/external/alpha)',
 		},
 		{
 			displayName: 'Access Token',

@@ -9,27 +9,14 @@ export const chatGetManyDescription: INodeProperties[] = [
 	{
 		displayName: 'Limit',
 		name: 'limit',
-		type: 'number',
+		type: 'string',
 		displayOptions: {
 			show: {
 				...showOnlyForChatGetMany,
 				returnAll: [false],
 			},
 		},
-		typeOptions: {
-			minValue: 1,
-			maxValue: 100,
-		},
-		default: 50,
-		routing: {
-			send: {
-				type: 'query',
-				property: 'limit',
-			},
-			output: {
-				maxResults: '={{$value}}',
-			},
-		},
+		default: '',
 		description: 'Max number of results to return',
 	},
 ];
