@@ -2,10 +2,13 @@ import type {
 	JsonObject,
 	IDataObject,
 	IExecuteFunctions,
+	IExecuteSingleFunctions,
 	IHookFunctions,
 	IHttpRequestMethods,
-	ILoadOptionsFunctions,
 	IHttpRequestOptions,
+	ILoadOptionsFunctions,
+	IN8nHttpFullResponse,
+	INodeExecutionData,
 } from 'n8n-workflow';
 import { NodeApiError } from 'n8n-workflow';
 
@@ -21,12 +24,13 @@ export async function realmApiRequest(
 	body: IDataObject = {},
 	qs: IDataObject = {},
 ): Promise<IDataObject> {
+	const { baseUrl } = await this.getCredentials<{ baseUrl: string }>('realmApi');
 	const options: IHttpRequestOptions = {
 		headers: {},
 		method,
 		body,
 		qs,
-		baseURL: 'https://abtasty.withrealm.com/api/external/alpha',
+		baseURL: baseUrl,
 		url: path,
 		json: true,
 	};
@@ -38,4 +42,21 @@ export async function realmApiRequest(
 	} catch (error) {
 		throw new NodeApiError(this.getNode(), error as JsonObject);
 	}
+}
+
+export async function debugRequest(
+	this: IExecuteSingleFunctions,
+	requestOptions: IHttpRequestOptions,
+): Promise<IHttpRequestOptions> {
+	console.log(`>>> ${this.getNode().type} >>> ${this.getNode().name} >> Request`, requestOptions);
+	return requestOptions;
+}
+
+export async function debugResponse(
+	this: IExecuteSingleFunctions,
+	items: INodeExecutionData[],
+	response: IN8nHttpFullResponse,
+) {
+	console.log(`>>> ${this.getNode().type} >>> ${this.getNode().name} >>> Response`, response);
+	return items;
 }
