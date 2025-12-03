@@ -2,13 +2,10 @@ import type {
 	JsonObject,
 	IDataObject,
 	IExecuteFunctions,
-	IExecuteSingleFunctions,
 	IHookFunctions,
 	IHttpRequestMethods,
 	IHttpRequestOptions,
 	ILoadOptionsFunctions,
-	IN8nHttpFullResponse,
-	INodeExecutionData,
 } from 'n8n-workflow';
 import { NodeApiError } from 'n8n-workflow';
 
@@ -42,21 +39,4 @@ export async function realmApiRequest(
 	} catch (error) {
 		throw new NodeApiError(this.getNode(), error as JsonObject);
 	}
-}
-
-export async function debugRequest(
-	this: IExecuteSingleFunctions,
-	requestOptions: IHttpRequestOptions,
-): Promise<IHttpRequestOptions> {
-	console.log(`>>> ${this.getNode().type} >>> ${this.getNode().name} >> Request`, requestOptions);
-	return requestOptions;
-}
-
-export async function debugResponse(
-	this: IExecuteSingleFunctions,
-	items: INodeExecutionData[],
-	response: IN8nHttpFullResponse,
-) {
-	console.log(`>>> ${this.getNode().type} >>> ${this.getNode().name} >>> Response`, response);
-	return items;
 }

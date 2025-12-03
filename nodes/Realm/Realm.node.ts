@@ -89,7 +89,6 @@ export class Realm implements INodeType {
 			async getAssistants(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
 				const responseData = await realmApiRequest.call(this, 'GET', '/assistants', {}, {});
-				// this.logger.info(JSON.stringify(responseData, null, 2));
 				const items = (responseData.data as IDataObject[]) || [];
 				for (const item of items) {
 					returnData.push({
@@ -106,7 +105,6 @@ export class Realm implements INodeType {
 			async getConnectors(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
 				const responseData = await realmApiRequest.call(this, 'GET', '/connectors', {}, {});
-				// this.logger.info(JSON.stringify(responseData, null, 2));
 				const items = (responseData.data as IDataObject[]) || [];
 				for (const item of items) {
 					returnData.push({

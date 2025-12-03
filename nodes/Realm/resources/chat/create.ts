@@ -1,5 +1,4 @@
 import type { INodeProperties } from 'n8n-workflow';
-// import { debugRequest, debugResponse } from '../../GenericFunctions';
 
 const showOnlyForChatCreate = {
 	operation: ['create'],
@@ -46,20 +45,7 @@ export const chatCreateDescription: INodeProperties[] = [
 			send: {
 				type: 'body',
 				property: 'content',
-				// preSend: [debugRequest],
 			},
-			// output: {
-			// 	postReceive: [
-			// 		{
-			// 			type: 'setKeyValue',
-			// 			properties: {
-			// 				assistant_id: '={{ $responseItem.assistant_id }}',
-			// 				content: '={{ $responseItem.content }}',
-			// 			},
-			// 		},
-			// 		debugResponse,
-			// 	],
-			// },
 		},
 	},
 	{
